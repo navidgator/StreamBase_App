@@ -141,6 +141,7 @@ int _tmain(int argc, TCHAR *argv[])
 					&cbWritten,             // bytes written 
 					NULL);                  // not overlapped 
 
+				// Reading the Data info and creating a data object
 				int tmp_int;
 				double tmp_double;
 				std::string tmp_string;
@@ -155,9 +156,9 @@ int _tmain(int argc, TCHAR *argv[])
 				tmp_data.set_double(tmp_double);
 				tmp_data.set_string(tmp_string.c_str());
 				char* tmp_msg= new char[BUFFERSIZE];
-				tmp_data.Ser(tmp_msg);
+				tmp_data.Ser(tmp_msg);					//Serializing the data object
 				Data test;
-				test.Unser(LPSTR(tmp_msg));
+				test.Unser(LPSTR(tmp_msg));				//Just to test if the unserialization works
 				lpvMessage = LPTSTR(tmp_msg);
 				cbToWrite = tmp_data.size() * sizeof(TCHAR);
 				fSuccess = WriteFile(
